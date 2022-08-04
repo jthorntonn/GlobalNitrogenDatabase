@@ -1,6 +1,5 @@
 library(shiny)
 library(plotly)
-library(shiny)
 library(reshape2)
 library(dplyr) # I think this is for filter()
 library(png)
@@ -82,12 +81,12 @@ ui <- fluidPage(theme = shinytheme("superhero"),
       ),
       tabPanel("NUE", fluid = TRUE),
       tabPanel("Individual Countries", fluid = TRUE,
-               selectInput("select", label = h6("Which Country's Nitrogen Input/Output Data Would You Like to View?"), 
+               selectInput("select4", label = h6("Which Country's Nitrogen Input/Output Data Would You Like to View?"), 
                            choices = CountryNames, 
                            selected = 1),
                fluidRow(plotlyOutput("myPlot")),
                screenshotButton(label = "Download Image")),
-    ),
+    )
   
   
 )
@@ -181,7 +180,7 @@ server <- function(input, output) {
       })
   output$"myPlot" <- 
     renderPlotly({
-      ISO_slct <- ISO3_lst[which(CountryNames==input$'select')[1]]
+      ISO_slct <- ISO3_lst[which(CountryNames==input$'select4')[1]]
       iso_df <- melt_df[melt_df[,"ISO3"]== ISO_slct,]
       df_edt <- iso_df[iso_df$data_type %in% keep, ]
       new_names <- c('4_Fertilizer', '3_Manure', '2_Fixation', '1_Deposition', 
