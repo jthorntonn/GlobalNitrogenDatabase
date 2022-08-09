@@ -15,9 +15,14 @@ library(shinythemes)
 library(shinyscreenshot)
 
 df_min <- read.csv('GlobalNStudyFinal_Amin.csv')
+df_min[df_min$Country == "CÃ´te d'Ivoire",]$Country <- "Ivory Coast"# rename ivory coast
 df_max <- read.csv('GlobalNStudyFinal_Amax.csv')
+df_max[df_max$Country == "CÃ´te d'Ivoire",]$Country <- "Ivory Coast"# rename ivory coast
 df_med <- read.csv('GlobalNStudyFinal_Amed.csv')
+df_med[df_med$Country == "CÃ´te d'Ivoire",]$Country <- "Ivory Coast"# rename ivory coast
 melt_df <- read.csv('melt_df.csv')
+melt_df[melt_df$Country=="CÃ<U+0083>Â´te d'Ivoire",]$Country <- "Ivory Coast" # rename ivory coast
+melt_df[melt_df$Country=="Ivory Coast",]$ISO3<- "CIV" # rename ivory coast ISO
 DataType_lst <- unique(df_min$data_type)
 Fertilizer_lst <- c("Benchmark_max_Fertilizer","Benchmark_median_Fertilizer","Benchmark_min_Fertilizer")
 Manure_lst <- c("Benchmark_max_Manure","Benchmark_median_Manure","Benchmark_min_Manure")
@@ -27,6 +32,7 @@ Harvest_lst <- c("Benchmark_max_Harvest","Benchmark_median_Harvest","Benchmark_m
 keep <- c("Benchmark_median_Fertilizer", "Benchmark_median_Manure", 
           "Benchmark_median_Fixation", "Benchmark_median_Deposition", 
           "Benchmark_median_Harvest", "Benchmark_median_Area_km2")
+
 ISO3_lst <- unique(melt_df$ISO3)
 CountryNames <- unique(melt_df$Country)
 
@@ -85,7 +91,7 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                            choices = CountryNames, 
                            selected = 1),
                fluidRow(plotlyOutput("myPlot")),
-               screenshotButton(label = "Download Image")),
+               screenshotButton(label = "Download Image"))
     )
   
   
@@ -180,7 +186,7 @@ server <- function(input, output) {
       })
   output$"myPlot" <- 
     renderPlotly({
-      ISO_slct <- ISO3_lst[which(CountryNames==input$'select4')[1]]
+      ISO_slct <- ISO3_lst[which(CountryNames==input$'select4')[1]] # this assumes the country name and iso code lists are in corresponding order*
       iso_df <- melt_df[melt_df[,"ISO3"]== ISO_slct,]
       df_edt <- iso_df[iso_df$data_type %in% keep, ]
       new_names <- c('4_Fertilizer', '3_Manure', '2_Fixation', '1_Deposition', 
