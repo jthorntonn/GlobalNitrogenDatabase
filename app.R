@@ -103,7 +103,7 @@ server <- function(input, output) {
   })
   
   output$'image1' <- renderPlot({
-    my_image <- readPNG("\\Users\\JakeT\\Documents\\GlobalNitrogen_app_v3\\GlobalNitrogen_app_v3\\n_app\\GND-pics\\image1.png", native = TRUE)
+    my_image <- readPNG("image1.png", native = TRUE)
     df_empty <- data.frame()
     ggplot(df_empty) +                  
       inset_element(p = my_image,
@@ -114,7 +114,7 @@ server <- function(input, output) {
   })
   
   output$'image2' <- renderPlot({
-    my_image <- readPNG("\\Users\\JakeT\\Documents\\GlobalNitrogen_app_v3\\GlobalNitrogen_app_v3\\n_app\\GND-pics\\image2.png", native = TRUE)
+    my_image <- readPNG("image2.png", native = TRUE)
     df_empty <- data.frame()
     ggplot(df_empty) +                
       inset_element(p = my_image,
@@ -125,7 +125,7 @@ server <- function(input, output) {
   })
   
   output$'map1' <- renderPlot({
-    my_image <- readPNG("\\Users\\JakeT\\Documents\\GlobalNitrogen_app_v3\\GlobalNitrogen_app_v3\\n_app\\GND-pics\\map1.png", native = TRUE)
+    my_image <- readPNG("map1.png", native = TRUE)
     df_empty <- data.frame()
     ggplot(df_empty) +                
       inset_element(p = my_image,
@@ -136,7 +136,7 @@ server <- function(input, output) {
   })
   
   output$'thumbnail' <- renderPlot({
-    my_image <- readPNG("\\Users\\JakeT\\Documents\\GlobalNitrogen_app_v3\\GlobalNitrogen_app_v3\\n_app\\GND-pics\\thumbnail_USA.png", native = TRUE)
+    my_image <- readPNG("thumbnail_USA.png", native = TRUE)
     df_empty <- data.frame()
     ggplot(df_empty) +                
       inset_element(p = my_image,
